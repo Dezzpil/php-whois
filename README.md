@@ -1,6 +1,7 @@
-# php-whois
+# Kohana-php-whois
 
-PHP class to retrieve WHOIS information.
+Kohana Whois module based on php-whois (https://github.com/regru/php-whois)
+with adding idna_convert class
 
 ## Example of usage
 
@@ -8,20 +9,12 @@ PHP class to retrieve WHOIS information.
 
 <?php
 
-include('whois.class.php');
+$dns = DNS::instances('ya.ru');
+var_dump($dns->info());                 // get info from whois server
+var_dump($dbs->is_available());         // get is free or busy
 
-$domain_name = 'reg.ru';
 
-$domain = new whois( $domain_name );
-$whois_answer = $domain->info();
-
-echo $whois_answer;
-
-if ($domain->is_available()) {
-    echo "Domain is available\n";
-} else {
-    echo "Domain is registered\n";
-}
+$dns = DNS::instances('президент.рф');
+echo $dns->idn_encode()->get_domain();  // get domain as ACE string
 
 ```
-

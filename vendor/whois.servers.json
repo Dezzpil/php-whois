@@ -1642,5 +1642,9 @@
     "bg": [
         "whois.register.bg",
         "does not exist in database"
+    ],
+    "xn--p1ai" : [
+        "whois.ripn.net",
+        "No entries"
     ]
 }

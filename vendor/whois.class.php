@@ -1,4 +1,4 @@
-<?php
+<?php defined('SYSPATH') OR die('No direct script access.');
 
 class whois {
     var $domain;
@@ -7,12 +7,15 @@ class whois {
 
     var $servers;
 
-    function whois ($domain_name) {
+    function __construct() {
+        // setup whois servers array from json file
+        $this->servers = json_decode(file_get_contents( __DIR__.'/whois.servers.json' ),TRUE);
+    }
+
+    function set_domain($domain_name) {
         $this->domain = $domain_name;
         $this->get_tld();
         $this->get_domain();
-        // setup whois servers array from json file
-        $this->servers = json_decode(file_get_contents( __DIR__.'/whois.servers.json' ),TRUE);
     }
 
     function info() {
@@ -163,7 +166,7 @@ class whois {
         ) {
             $tmp_domain = strtolower($this->domainname);
             if (
-                ereg("^[a-z0-9\-]{3,}$", $tmp_domain) 
+                ereg("^[a-z0-9\-]{2,}$", $tmp_domain)
                 && !ereg("^-|-$", $tmp_domain) //&& !preg_match("/--/", $tmp_domain)
             ) {
                 return true;
