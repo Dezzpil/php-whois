@@ -1,14 +1,12 @@
-# php-whois
+# Kohana-php-whois
 
-PHP class to retrieve WHOIS information.
+Kohana Whois module based on php-whois (https://github.com/regru/php-whois)
 
 ## Example of usage
 
 ```php
 
 <?php
-
-include('whois.class.php');
 
 $domain_name = 'reg.ru';
 
